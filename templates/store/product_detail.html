@@ -11,13 +11,26 @@
 	<div class="row no-gutters">
 		<aside class="col-md-6">
 <article class="gallery-wrap">
-	<div class="img-big-wrap">
-	   <a href="#"><img src={{ single_product.images.url }}></a>
+	<div class="img-big-wrap mainImage">
+	   <center><img src="{{ single_product.images.url }}"></center>
 	</div> <!-- img-big-wrap.// -->
 
 </article> <!-- gallery-wrap .end// -->
+<ul class="thumb">
+	<li>
+		{% for i in product_gallery %}
+			<a href="{{i.image.url}}" target="mainImage"><img src="{{i.image.url}}" alt="Product Image">
+		{% endfor %}
+		</li>
+	</ul>
 		</aside>
 		<main class="col-md-6 border-left">
+
+
+
+			<form action="{% url 'add_cart' single_product.id %}" method="POST">
+				{% csrf_token %}
+
 <article class="content-body">
 
 <h2 class="title">{{ single_product.product_name }}</h2>
@@ -30,51 +43,53 @@
 
 
 <hr>
-	<div class="row">
-		<div class="item-option-select">
-			<h6>Choose Color</h6>
-			<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> Silver
-			  </label>
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color" > Gray
-			  </label>
-			  <label class="btn btn-light active">
-			    <input type="radio" name="radio_color checked"> Gold
-			  </label>
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> Black
-			  </label>
-			</div>
+<div class="row">
+	<div class="item-option-select">
+		<h6>Choose Color</h6>
+		<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color"> Silver
+			</label>
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color" > Gray
+			</label>
+			<label class="btn btn-light active">
+				<input type="radio" name="radio_color checked"> Gold
+			</label>
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color"> Black
+			</label>
 		</div>
-	</div> <!-- row.// -->
-	<div class="row">
-		<div class="item-option-select">
-			<h6>Select Size</h6>
-			<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> S
-			  </label>
-			  <label class="btn btn-light active">
-			    <input type="radio" name="radio_color" checked> M
-			  </label>
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> L
-			  </label>
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> XL
-			  </label>
-			</div>
+	</div>
+</div> <!-- row.// -->
+<div class="row">
+	<div class="item-option-select">
+		<h6>Select Size</h6>
+		<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color"> S
+			</label>
+			<label class="btn btn-light active">
+				<input type="radio" name="radio_color" checked> M
+			</label>
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color"> L
+			</label>
+			<label class="btn btn-light">
+				<input type="radio" name="radio_color"> XL
+			</label>
 		</div>
-	</div> <!-- row.// -->
+	</div>
+</div> <!-- row.// -->
 	<hr>
 	{% if single_product.stock <= 0 %}
 	<h5 class= "text-danger">Out of stock</h5>
 	{% else %}
-	<a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+	<button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
 	{% endif %}
-</article> <!-- product-info-aside .// -->
+</article>
+</form>
+ <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
 	</div> <!-- row.// -->
 </div> <!-- card.// -->
