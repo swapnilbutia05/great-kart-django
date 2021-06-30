@@ -20,6 +20,7 @@ import requests
 
 def register(request):
     if request.method == 'POST':
+
         form = RegistrationForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -47,6 +48,7 @@ def register(request):
             # messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email address [rathan.kumar@gmail.com]. Please verify it.')
             return redirect('/accounts/login/?command=verification&email='+email)
     else:
+
         form = RegistrationForm()
     context={
         'form' : form,

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'admin_honeypot',
+    
 
 ]
 
@@ -140,7 +141,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
-'greatkart/static',
+    'greatkart/static',
 ]
 
 MEDIA_URL = '/media/'
