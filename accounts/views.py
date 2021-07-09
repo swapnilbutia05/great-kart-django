@@ -84,7 +84,7 @@ def login(request):
                     nextPage = params['next']
                     return redirect(nextPage)
             except:
-                return redirect('dashboard')
+                return redirect('home')
         else:
             messages.error(request,'Invalid login credentials')
             return redirect('login')
@@ -117,7 +117,7 @@ def activate(request, uidb64, token):
 
 
 def dashboard(request):
-    return render(request,'accounts/dashboard.html')
+    return render(request,'home.html')
 
 
 
